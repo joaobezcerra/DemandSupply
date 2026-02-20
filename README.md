@@ -20,7 +20,7 @@ The project includes exploratory data analysis and graphical display to understa
 
 ### Run the Prediction Script
 ```bash
-python demanda_transporte.py
+python demandatransporte.py
 ```
 
 ## Results
