@@ -20,14 +20,27 @@ The project includes exploratory data analysis and graphical display to understa
 
 ### Run the Prediction Script
 ```bash
-python demanda_transporte.py
+python demandatransporte.py
 ```
 
-## Results
-Results include:
-- Prediction of transport demand at different times
-- Graphs comparing actual and predicted values
-- Analysis of forecast errors
+## Validation Method
+The selected method is **5-fold cross-validation (K-Fold with shuffle)**.
 
-<img width="1790" height="490" alt="image" src="https://github.com/user-attachments/assets/2a27aa06-271e-4276-9e40-daa7b8ac4365" />
-Avaliação do Modelo: MAE: 31.49; MSE: 1816.00; R²: 0.37
+Why this method?
+- The current dataset has no explicit timestamp column.
+- Therefore, a temporal split could not be applied safely.
+- K-Fold reduces dependency on a single train/test split by rotating validation folds.
+
+## Model Comparison
+Two models are evaluated under the same validation protocol:
+- **Baseline model** (`DummyRegressor` with mean of `y_train`)
+- **Linear Regression model**
+
+For each model, the script reports:
+- **Mean ± standard deviation** of **MAE**, **MSE**, and **R²** across the 5 folds.
+
+## How to Interpret the Results
+- Lower **MAE** and **MSE** indicate smaller prediction errors.
+- Higher **R²** indicates better explanation of variability in completed rides.
+- If Linear Regression outperforms the baseline consistently, the features carry useful predictive signal.
+- The reported standard deviation indicates stability: lower deviation means more consistent performance across folds.
